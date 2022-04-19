@@ -10,7 +10,7 @@ const API_PASSWORD = process.env.API_PASSWORD
 const SERVICE_API_PORT = process.env.SERVICE_API_PORT
 const API_PATH = process.env.API_PATH
 const API_USERNAME = process.env.API_USERNAME
-const INSECURE = process.env.INSECURE
+const SSL = process.env.SSL
 const CALLER_ID = process.env.CALLER_ID
 
 switch (CALLER_ID) {
@@ -31,7 +31,7 @@ switch (CALLER_ID) {
 }
 
 var protocol
-if (INSECURE) {
+if (!SSL) {
   protocol = 'http'
 } else {
   protocol = 'https'
