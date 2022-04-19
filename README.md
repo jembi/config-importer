@@ -21,13 +21,13 @@ version: '3.9'
 
 services:
   <service to configure>-config-importer:
-    image: jembi/config-importer:<image tag>
+    image: jembi/config-importer:<version-tag>
     environment:
       SERVICE_NAME: <service name>
       SERVICE_API_PORT: <service port>
       API_USERNAME: <service username>
       API_PASSWORD: <service password>
-      INSECURE: <true/false>
+      SSL: <true/false>
       API_PATH: <service config endpoint>
       CALLER_ID: <service to configure>-config-importer
     deploy:
@@ -37,6 +37,12 @@ services:
 ```
 
 The config importer depends on files placed in the config raft to attach as part of the request body. So, remember to specify your configs in the compose file. 
+
+## Building locally
+
+To build the config-importer image locally, run the following commands:
+- `npm run build`
+- `docker build -t jembi/config-importer:<version-tag> .` <-- don't forget to include the period!
 
 ## Notes
 
