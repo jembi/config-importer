@@ -31,7 +31,7 @@ switch (CALLER_ID) {
 }
 
 var protocol
-if (!SSL) {
+if (SSL == 'false') {
   protocol = 'http'
 } else {
   protocol = 'https'
@@ -40,15 +40,10 @@ if (!SSL) {
 var config = {
   method: 'post',
   url: `${protocol}://${SERVICE_NAME}:${SERVICE_API_PORT}${API_PATH}`,
-  // url: `http://localhost:5488/api/import`,
   auth: {
     username: API_USERNAME,
     password: API_PASSWORD
   },
-  // auth: {
-  //   username: 'admin',
-  //   password: 'dev_password_only'
-  // },
   headers: {
     'Content-Type': 'application/json',
     ...data.getHeaders()
@@ -62,4 +57,5 @@ axios(config)
   })
   .catch(function (error) {
     console.log(error)
+    process.exit(1)
   })
